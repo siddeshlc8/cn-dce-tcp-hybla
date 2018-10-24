@@ -12,7 +12,7 @@ Praveen Naik S (16Co133) - <praveennaik.s@gmaiil.com>
 
 Validate the ns-3 implementation of TCP Hybla.
 
-## **About Prject Topic:**
+## **About Project Topic:**
 
 TCP Hybla is targeted to improve the performance TCP in Satellite networks where RTT is usually large. In this project, the aim is to validate ns-3 TCP Hybla implementation by comparing the results obtained from it to those obtained by simulating Linux TCP Hybla.
 
