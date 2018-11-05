@@ -40,7 +40,7 @@
 using namespace ns3;
 Ptr<UniformRandomVariable> uv = CreateObject<UniformRandomVariable> ();
 std::string dir = "results/gfc-dumbbell/";
-double stopTime = 20;
+double stopTime =30;
 
 void
 CheckQueueSize (Ptr<QueueDisc> queue)
@@ -132,7 +132,7 @@ TraceCwnd (uint32_t node, uint32_t cwndWindow,
         BulkSendHelper source ("ns3::TcpSocketFactory", InetSocketAddress (address, port));
         source.SetAttribute ("MaxBytes", UintegerValue (0));
         ApplicationContainer sourceApps = source.Install (node);
-        Time timeToStart = Seconds (uv->GetValue (0, 1));
+        Time timeToStart = Seconds (uv->GetValue (10, 11));
         sourceApps.Start (timeToStart);
         Simulator::Schedule (timeToStart + Seconds (0.001), &TraceCwnd, nodeId, cwndWindow, CwndTrace);
         sourceApps.Stop (Seconds (stopTime));
@@ -150,7 +150,7 @@ if(stack == "linux")
         }
 else
         {
-                sinkApps.Start (Seconds (0.0));
+                sinkApps.Start (Seconds (10.0));
                 sinkApps.Stop (Seconds (stopTime));
         }
 }
@@ -174,12 +174,13 @@ static void GetSSStats (Ptr<Node> node, Time at, std::string stack)
 int main (int argc, char *argv[])
 {
   uint32_t stream = 1;
-  std::string stack = "linux";
+  std::string stack = "ns3";
   std::string sock_factory = "ns3::TcpSocketFactory";
   std::string transport_prot = "TcpHybla";
-  std::string linux_prot = "veno";
+  std::string linux_prot = "hybla";
   std::string queue_disc_type = "FifoQueueDisc";
-  bool useEcn = true;
+  std::string recovery = "ns3::TcpClassicRecovery";
+  bool useEcn = false;
   uint32_t dataSize = 1446;
   uint32_t delAckCount = 2;
 
@@ -207,6 +208,7 @@ int main (int argc, char *argv[])
                 "hybla, highspeed, htcp, vegas, scalable, veno, "
                 "bic, yeah, illinois, westwood, lp", linux_prot);
   cmd.AddValue ("queue_disc_type", "Queue disc type for gateway (e.g. ns3::CoDelQueueDisc)", queue_disc_type);
+  cmd.AddValue ("recovery", "Recovery algorithm type to use (e.g., ns3::TcpPrrRecovery", recovery);
   cmd.AddValue ("useEcn", "Use ECN", useEcn);
   cmd.AddValue ("dataSize", "Data packet size", dataSize);
   cmd.AddValue ("delAckCount", "Delayed ack count", delAckCount);
@@ -223,8 +225,12 @@ int main (int argc, char *argv[])
   TypeId qdTid;
   NS_ABORT_MSG_UNLESS (TypeId::LookupByNameFailSafe (queue_disc_type, &qdTid), "TypeId " << queue_disc_type << " not found");
 
+  
+
   if (stack == "ns3")
     {
+      Config::SetDefault ("ns3::TcpL4Protocol::RecoveryType",
+                      TypeIdValue (TypeId::LookupByName (recovery)));
       if (transport_prot.compare ("ns3::TcpWestwoodPlus") == 0)
         {
           // TcpWestwoodPlus is not an actual TypeId name; we need TcpWestwood here
@@ -244,6 +250,8 @@ int main (int argc, char *argv[])
   routers.Create (2);
   leftNodes.Create (5);
   rightNodes.Create (5);
+
+ 
 
   // Create the point-to-point link helpers
   PointToPointHelper pointToPointRouter;
@@ -411,7 +419,7 @@ int main (int argc, char *argv[])
       Config::SetDefault ("ns3::TcpSocket::InitialCwnd", UintegerValue (10));
       Config::SetDefault ("ns3::TcpSocket::DelAckCount", UintegerValue (delAckCount));
       Config::SetDefault ("ns3::TcpSocket::SegmentSize", UintegerValue (dataSize));
-      Config::SetDefault ("ns3::TcpSocketBase::UseEcnMode", StringValue ("ClassicEcn"));
+      //Config::SetDefault ("ns3::TcpSocketBase::UseEcnMode", StringValue ("ClassicEcn"));
     }
 
   //Config::SetDefault ("ns3::FifoQueueDisc::UseEcn", BooleanValue (UseEcn);
