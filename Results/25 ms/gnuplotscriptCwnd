@@ -1,0 +1,49 @@
+set xrange [10:30]
+set yrange [-100:1400]
+set terminal pngcairo enhanced color lw 2 size 800,600 font 'Arial-Bold'
+set output "CwndA.png"
+set xlabel "Time (sec)" font "Verdana"
+set ylabel "Cwnd (Packets)" font "Verdana"
+set key outside;
+set key right top;
+plot "A.plotme" title "ns3" with lines lw 1.5,"2.plotme" title "linux" with lines lw 1.5
+
+set terminal pngcairo enhanced color lw 2 size 800,600 font 'Arial-Bold'
+set output "CwndB.png"
+set xlabel "Time (sec)" font "Verdana"
+set ylabel "Cwnd (Packets)" font "Verdana"
+set key outside;
+set key right top;
+plot "B.plotme" title "ns3" with lines lw 1.5,"3.plotme" title "linux" with lines lw 1.5
+
+set terminal pngcairo enhanced color lw 2 size 800,600 font 'Arial-Bold'
+set output "CwndC.png"
+set xlabel "Time (sec)" font "Verdana"
+set ylabel "Cwnd (Packets)" font "Verdana"
+set key outside;
+set key right top;
+plot "C.plotme" title "ns3" with lines lw 1.5,"4.plotme" title "linux" with lines lw 1.5
+
+set terminal pngcairo enhanced color lw 2 size 800,600 font 'Arial-Bold'
+set output "CwndD.png"
+set xlabel "Time (sec)" font "Verdana"
+set ylabel "Cwnd (Packets)" font "Verdana"
+set key outside;
+set key right top;
+plot "D.plotme" title "ns3" with lines lw 1.5,"5.plotme" title "linux" with lines lw 1.5
+
+set terminal pngcairo enhanced color lw 2 size 800,600 font 'Arial-Bold'
+set output "CwndE.png"
+set xlabel "Time (sec)" font "Verdana"
+set ylabel "Cwnd (Packets)" font "Verdana"
+set key outside;
+set key right top;
+plot "E.plotme" title "ns3" with lines lw 1.5,"6.plotme" title "linux" with lines lw 1.5
+
+set terminal pngcairo enhanced color lw 2 size 800,600 font 'Arial-Bold'
+set output "Queue.png"
+set xlabel "Time (sec)" font "Verdana"
+set ylabel "Cwnd (Packets)" font "Verdana"
+set key outside;
+set key right top;
+plot "queue-size 1.plotme" title "ns3" with lines lw 1.5,"queue-size.plotme" title "linux" with lines lw 1.5
