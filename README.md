@@ -22,7 +22,30 @@ A key component of TCP is a congestion-control mechanism. One of the newer conge
 
 <img src="https://zymitry.com/wp-content/uploads/2018/01/hybla-300x149.png"> <br>
 
+The TCP Hybla segment (packet) transmission rate function BH(t) was given by:
+
+                
+                   	      
+                 
+                   	     
+                   
+                           
+            BH(t) =  (WH(t) /RTT)       =     (1/RTT0) 2^(t/RTT0)                  . . . . . (SS)
+            BH(t) =  (WH(t) /RTT)       =   (1/RTT0)    (  (t - tγ,0)/RTT0+ γ )          . . . . (CA) 
+                   
+                                  
+                         
+                                      
+
+ We can obtain the TCP Hybla throughput function TH(t) by integrating BH(t):
  
+ <img src="http://www.mathcs.emory.edu/~cheung/Courses/558/Syllabus/10-RTT-Unfairness/FIGS/Hybla-09.gif"><br>
+
+You can see that the throughput function of Hybla TCP is INDEPENDENT of RTT
+
+
+
+
 To alleviate packet loss in the window, TCP Hybla uses Selective Acknowledgement (SACK) which allows the sender to know exactly which packets have been sent successfully, and the ability to send more than one packet per RTT. 
 
 Another enhancement of TCP Hybla is packet spacing during transmission. As previously stated, Hybla results in a larger cwnd size which can result in erratic transmission bursts. These bursts can be smoothed out using more intermittent transmissions and spacing each transmission out over a period of time. TCP Hybla is well suited for satellite transmissions and other connections that typically have a high RTT.
