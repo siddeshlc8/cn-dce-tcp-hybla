@@ -62,13 +62,15 @@ Direct Code Execution (DCE) is a framework over ns-3 that provides a feature to 
 * <a href="https://elixir.bootlin.com/linux/v4.4/source/net/ipv4/tcp_hybla.c">Linux kernel code</a>
 * <a href="http://www.mathcs.emory.edu/~cheung/Courses/558/Syllabus/10-RTT-Unfairness/Hybla.html">TCP Hybla</a>
 
-## **File Structure:**
 
 
 ## **Progress:**
 
 * <a href="https://github.com/siddeshlc8/cn-dce-tcp-hybla/wiki/Week---1">Week 1</a>
-* <a href="https://github.com/siddeshlc8/cn-dce-tcp-hybla/wiki/Week---2">Week 2</a>
-* <a href="https://github.com/siddeshlc8/cn-dce-tcp-hybla/wiki/Week---3">Week 3</a>
+* <a href="https://github.com/siddeshlc8/cn-dce-tcp-hybla/wiki/Week-2">Week 2</a>
+* <a href="https://github.com/siddeshlc8/cn-dce-tcp-hybla/wiki/Week-3">Week 3</a>
+* <a href="https://github.com/siddeshlc8/cn-dce-tcp-hybla/wiki/Week-4">Week 4</a>
+* <a href="https://github.com/siddeshlc8/cn-dce-tcp-hybla/wiki/Week-5">Week 5</a>
+* <a href="https://github.com/siddeshlc8/cn-dce-tcp-hybla/wiki/Week-6">Week 6</a>
 
 
